@@ -77,7 +77,7 @@ func next_step(inc):
 			
 		chunk_step = len(data['cells']) - 1
 		
-	$layer.update(data['cells'][chunk_step])
+	$Layer.update(data['cells'][chunk_step])
 
 	
 func find_data_chunks():

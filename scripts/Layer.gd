@@ -5,21 +5,21 @@ func initialize(layer_info):
 	var context_sizes = [layer_info['columns'], layer_info['cells_per_column'], 1]
 	var feedback_sizes = [layer_info['feedback_cells'], 1, 1]
 			
-	$local_cells.initialize(local_sizes)
-	$context_cells.initialize(context_sizes)
-	$feedback_cells.initialize(feedback_sizes)
+	$LocalCells.initialize(local_sizes)
+	$ContextCells.initialize(context_sizes)
+	$FeedbackCells.initialize(feedback_sizes)
 	
 	# pack arrays
 	
-	$local_cells.translation = self.translation
-	$context_cells.translation = self.translation
-	$feedback_cells.translation = self.translation
+	$LocalCells.translation = self.translation
+	$ContextCells.translation = self.translation
+	$FeedbackCells.translation = self.translation
 	
-	var y_shift = $local_cells.bounding_box[1].y - $local_cells.bounding_box[0].y + 5
+	var y_shift = $LocalCells.bounding_box[1].y - $LocalCells.bounding_box[0].y + 5
 	
 	var context_shift = Vector3(0, -y_shift, 0)
-	$context_cells.translate(context_shift)
-	$feedback_cells.translate(-context_shift)
+	$ContextCells.translate(context_shift)
+	$FeedbackCells.translate(-context_shift)
 	
 	
 func update(layer_data):
@@ -36,9 +36,9 @@ func update(layer_data):
 		states[cell['type']].append(state)
 		
 	
-	$local_cells.update_cells(states[0])
-	$context_cells.update_cells(states[1])
-	$feedback_cells.update_cells(states[2])
+	$LocalCells.update_cells(states[0])
+	$ContextCells.update_cells(states[1])
+	$FeedbackCells.update_cells(states[2])
 
 
 func bin2int(bin_str):
