@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/Main.gd" type="Script" id=2]
+
+[sub_resource type="Environment" id=1]
+ambient_light_color = Color( 0.290196, 0.290196, 0.290196, 1 )
+ambient_light_energy = 1.08
+glow_enabled = true
+glow_bloom = 0.48
+
+[node name="Main" type="Node"]
+script = ExtResource( 2 )
+data_path = "/home/gsys/Desktop/Activity/HTM/htm_rl_tepo/hima_airi/him-agent/hima/experiments/htm/logs/tm_state"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="PivotCam" type="Spatial" parent="."]
+
+[node name="Camera" type="Camera" parent="PivotCam"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 46.4307, 0, 53.8025 )
+projection = 1
+fov = 89.2
+size = 100.0
