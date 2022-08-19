@@ -29,7 +29,7 @@ func initialize(sizes):
 	bounding_box = [init_pos, pos]
 
 
-func update_cells(states):
+func update_cells(cell_data):
 	for i in range(len(cells)):
-		cells[i].set_state(states[i])
+		cells[i].set_cell_data(cell_data[i])
 

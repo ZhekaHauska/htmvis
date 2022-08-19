@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/pyramidal_cell.obj" type="ArrayMesh" id=1]
-[ext_resource path="res://scripts/PyramidalCell.gd" type="Script" id=2]
+[ext_resource path="res://scripts/Cell.gd" type="Script" id=1]
+[ext_resource path="res://assets/pyramidal_cell.obj" type="ArrayMesh" id=2]
 
 [sub_resource type="SpatialMaterial" id=1]
 resource_local_to_scene = true
@@ -15,7 +15,7 @@ emission_on_uv2 = false
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("CSGMesh:material:emission_energy")
+tracks/0/path = NodePath("CellMesh:material:emission_energy")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -30,7 +30,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=3]
 resource_name = "light_up"
 tracks/0/type = "value"
-tracks/0/path = NodePath("CSGMesh:material:emission_energy")
+tracks/0/path = NodePath("CellMesh:material:emission_energy")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -42,13 +42,24 @@ tracks/0/keys = {
 "values": [ 1.0, 10.0, 1.0 ]
 }
 
-[node name="Cell" type="Spatial"]
-script = ExtResource( 2 )
+[sub_resource type="BoxShape" id=4]
 
-[node name="CSGMesh" type="CSGMesh" parent="."]
-mesh = ExtResource( 1 )
+[node name="Cell" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="CellMesh" type="CSGMesh" parent="."]
+mesh = ExtResource( 2 )
 material = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
 anims/light_up = SubResource( 3 )
+
+[node name="MouseClickArea" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.804878, 0, 0, -0.222208 )
+
+[node name="CollisionShape" type="CollisionShape" parent="MouseClickArea"]
+transform = Transform( 0.857568, 0, 0, 0, 0.77, 0, 0, 0, 1, 0, 0.792683, 0 )
+shape = SubResource( 4 )
+
+[connection signal="input_event" from="MouseClickArea" to="." method="_on_Area_input_event"]

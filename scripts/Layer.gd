@@ -4,13 +4,12 @@ func initialize(layer_info):
 	var local_sizes = [layer_info['columns'], layer_info['cells_per_column'], 1]
 	var context_sizes = [layer_info['columns'], layer_info['cells_per_column'], 1]
 	var feedback_sizes = [layer_info['feedback_cells'], 1, 1]
-			
+	
 	$LocalCells.initialize(local_sizes)
 	$ContextCells.initialize(context_sizes)
 	$FeedbackCells.initialize(feedback_sizes)
 	
 	# pack arrays
-	
 	$LocalCells.translation = self.translation
 	$ContextCells.translation = self.translation
 	$FeedbackCells.translation = self.translation
@@ -23,27 +22,12 @@ func initialize(layer_info):
 	
 	
 func update(layer_data):
-	var states = [[], [], []]
+	var cell_data = [[], [], []]
 	
 	for cell in layer_data:
-		var state = '%s%s%s' % [
-				int(cell['active']), 
-				int(cell['winner']), 
-				int(cell['predictive'])
-			]
-			
-		state = bin2int(state)
-		states[cell['type']].append(state)
+		cell_data[cell['type']].append(cell)
 		
-	
-	$LocalCells.update_cells(states[0])
-	$ContextCells.update_cells(states[1])
-	$FeedbackCells.update_cells(states[2])
-
-
-func bin2int(bin_str):
-	var out = 0
-	for c in bin_str:
-		out = (out << 1) + int(c == "1")
-	return out
+	$LocalCells.update_cells(cell_data[0])
+	$ContextCells.update_cells(cell_data[1])
+	$FeedbackCells.update_cells(cell_data[2])
 	

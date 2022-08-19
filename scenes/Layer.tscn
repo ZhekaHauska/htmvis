@@ -7,13 +7,13 @@
 script = ExtResource( 1 )
 
 [node name="LocalCells" parent="." instance=ExtResource( 2 )]
-cell_scene_path = "res://scenes/PyramidalCell.tscn"
+cell_scene_path = "res://scenes/Cell.tscn"
 steps = [ 3.0, 2.0, 0.0 ]
 
 [node name="ContextCells" parent="." instance=ExtResource( 2 )]
-cell_scene_path = "res://scenes/PyramidalCell.tscn"
+cell_scene_path = "res://scenes/Cell.tscn"
 steps = [ 3.0, 2.0, 0.0 ]
 
 [node name="FeedbackCells" parent="." instance=ExtResource( 2 )]
-cell_scene_path = "res://scenes/PyramidalCell.tscn"
+cell_scene_path = "res://scenes/Cell.tscn"
 steps = [ 3.0, 2.0, 0.0 ]
