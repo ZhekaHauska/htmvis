@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/GUI.gd" type="Script" id=1]
 [ext_resource path="res://scripts/Main.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Layer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/PivotCam.gd" type="Script" id=4]
 
 [sub_resource type="Environment" id=1]
 ambient_light_color = Color( 0.290196, 0.290196, 0.290196, 1 )
@@ -61,9 +62,10 @@ margin_right = -4.0
 margin_bottom = -4.0
 
 [node name="PivotCam" type="Spatial" parent="."]
+script = ExtResource( 4 )
 
 [node name="Camera" type="Camera" parent="PivotCam"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 46.4307, 0, 53.8025 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 46.4307, 0, 19.7764 )
 projection = 1
 fov = 89.2
 size = 100.0
