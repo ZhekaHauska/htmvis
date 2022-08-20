@@ -10,42 +10,20 @@ var step = 0
 
 
 func _ready():
-	var dir = Directory.new()
-	
-	if dir.open(data_path) == OK:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if file_name.ends_with('info.json'):
-				var path = dir.get_current_dir()
-				info_data = load_json_data('%s/%s' % [path, file_name])
-				
-				print('Info file found: %s' % file_name)
-				break
-			else:
-				file_name = dir.get_next()
-		
-		if file_name == "":
-			print('Info file not found in %s' % data_path)
-		else:
-			var chunks = find_data_chunks()
-			data = load_json_data(chunks[chunk])
-			
-			$Layer.initialize(info_data)
-			next_step(0)
-			
-			
-	else:
-		print('Error loading data.')
+	$GUI/Settings/PathContainer/DataPath.text = data_path
+	$GUI/Settings.popup()
 
 
-func _process(_delta):
-	if Input.is_action_just_pressed("next_step"):
+func _input(_event):
+	if Input.is_action_pressed("next_step"):
 		next_step(1)
 	
-	if Input.is_action_just_pressed("prev_step"):
+	if Input.is_action_pressed("prev_step"):
 		next_step(-1)
-		
+	
+	if Input.is_action_just_pressed("settings"):
+		$GUI/Settings.popup()
+		print('settings')
 	
 
 func next_step(inc):
@@ -122,5 +100,43 @@ func load_json_data(path):
 	return parse_data
 
 
+func _on_Settings_confirmed():
+	chunk = 0
+	chunk_step = 0
+	step = 0
+	
+	var dir = Directory.new()
+	
+	if dir.open(data_path) == OK:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if file_name.ends_with('info.json'):
+				var path = dir.get_current_dir()
+				info_data = load_json_data('%s/%s' % [path, file_name])
+				
+				print('Info file found: %s' % file_name)
+				break
+			else:
+				file_name = dir.get_next()
+		
+		if file_name == "":
+			print('Info file not found in %s' % data_path)
+		else:
+			var chunks = find_data_chunks()
+			data = load_json_data(chunks[chunk])
+			
+			$Layer.initialize(info_data)
+			next_step(0)
+			
+			
+	else:
+		print('Error loading data.')
 
 
+func _on_Browse_pressed():
+	$GUI/FileDialog.popup()
+
+
+func _on_FileDialog_dir_selected(dir):
+	data_path = dir

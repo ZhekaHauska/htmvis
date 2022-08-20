@@ -25,16 +25,22 @@ func _ready():
 	self.connect("selected", gui, "_on_Cell_selected")
 	var cell_info_panel = get_node("/root/Main/GUI/CellInfo")
 	cell_info_panel.connect("popup_hide", self, "_on_CellInfo_hide")
+	$AnimationPlayer.animation_set_next(
+		"receptive_field", "receptive_field_idle"
+			)
 
 func add_to_receptive_field():
 	shared_receptive_fields += 1
 	# draw hint that the cell in receptive field
 	if shared_receptive_fields == 1:
 		$InReceptiveField.visible = true
+		$AnimationPlayer.play("receptive_field")
+
 
 func reset_receptive_field():
 	shared_receptive_fields = 0
 	$InReceptiveField.visible = false
+	$AnimationPlayer.stop()
 
 func set_selected(value):
 	# draw hint that the cell is selected
@@ -77,6 +83,7 @@ func _on_Area_input_event(camera, event, position, normal, shape_idx):
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			emit_signal("selected", cell)
 			set_selected(true)
+			print('cell_info')
 
 
 func _on_CellInfo_hide():

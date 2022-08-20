@@ -11,6 +11,8 @@ func _input(event):
 		elif event.button_index == BUTTON_WHEEL_UP:
 			$Camera.size -= zoom_speed
 	
+	
+func _process(delta):
 	if Input.is_action_pressed("camera_left"):
 		$Camera.translation.x -= slide_speed
 	if Input.is_action_pressed("camera_right"):
