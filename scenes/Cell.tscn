@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/Cell.gd" type="Script" id=1]
 [ext_resource path="res://assets/pyramidal_cell.obj" type="ArrayMesh" id=2]
@@ -44,6 +44,14 @@ tracks/0/keys = {
 
 [sub_resource type="BoxShape" id=4]
 
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.921569, 1, 0, 1 )
+emission_enabled = true
+emission = Color( 0.992157, 1, 0, 1 )
+emission_energy = 2.0
+emission_operator = 0
+emission_on_uv2 = false
+
 [node name="Cell" type="Spatial"]
 script = ExtResource( 1 )
 
@@ -61,5 +69,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.804878, 0, 0, -0.222208 )
 [node name="CollisionShape" type="CollisionShape" parent="MouseClickArea"]
 transform = Transform( 0.857568, 0, 0, 0, 0.77, 0, 0, 0, 1, 0, 0.792683, 0 )
 shape = SubResource( 4 )
+
+[node name="InReceptiveField" type="CSGTorus" parent="."]
+transform = Transform( 0.6, 0, 0, 0, 0.0166497, 0.599917, 0, -0.479933, 0.00479511, 0, 0.485537, 0 )
+visible = false
+material = SubResource( 5 )
 
 [connection signal="input_event" from="MouseClickArea" to="." method="_on_Area_input_event"]

@@ -2,8 +2,6 @@ extends Node
 
 export var data_path = ''
 
-var layer_scene = preload("res://scenes/Layer.tscn")
-
 var info_data
 var data
 var chunk = 0
@@ -33,10 +31,7 @@ func _ready():
 			var chunks = find_data_chunks()
 			data = load_json_data(chunks[chunk])
 			
-			var layer = layer_scene.instance()
-			add_child(layer)
-			
-			layer.initialize(info_data)
+			$Layer.initialize(info_data)
 			next_step(0)
 			
 			

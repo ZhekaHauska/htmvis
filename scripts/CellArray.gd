@@ -33,3 +33,15 @@ func update_cells(cell_data):
 	for i in range(len(cells)):
 		cells[i].set_cell_data(cell_data[i])
 
+
+func add_receptive_fields(cell_ids):
+	for id in cell_ids:
+		cells[id].add_to_receptive_field()
+
+
+func reset_receptive_fields():
+		for cell in cells:
+			cell.reset_receptive_field()
+
+	
+

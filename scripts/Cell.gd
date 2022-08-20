@@ -3,6 +3,8 @@ extends Spatial
 signal selected(cell_data)
 
 var state = 0
+var shared_receptive_fields = 0
+var is_selected = false
 var cell
 
 export var colors = [
@@ -17,8 +19,29 @@ export var colors = [
 ]
 
 func _ready():
+	var layer = get_node("/root/Main/Layer")
+	self.connect("selected", layer, "_on_Cell_selected")
 	var gui = get_node("/root/Main/GUI")
 	self.connect("selected", gui, "_on_Cell_selected")
+
+func add_to_receptive_field():
+	shared_receptive_fields += 1
+	# draw hint that the cell in receptive field
+	if shared_receptive_fields == 1:
+		$InReceptiveField.visible = true
+
+func reset_receptive_field():
+	shared_receptive_fields = 0
+	$InReceptiveField.visible = false
+
+func set_selected(value):
+	is_selected = value
+	
+	# draw hint that the cell is selected
+	if is_selected:
+		pass
+	else:
+		pass
 
 func set_cell_data(cell_data):
 	cell = cell_data
