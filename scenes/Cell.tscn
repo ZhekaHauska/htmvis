@@ -171,7 +171,7 @@ transform = Transform( 0.857568, 0, 0, 0, 0.77, 0, 0, 0, 1, 0, 0.792683, 0 )
 shape = SubResource( 4 )
 
 [node name="InReceptiveField" type="CSGTorus" parent="."]
-transform = Transform( 0.6, 0, 0, 0, 0.0166496, 0.599575, 0, -0.479933, 0.0208002, 0, 0.485537, 0 )
+transform = Transform( 0.6, 0, 0, 0, 0.0166498, 0.599575, 0, -0.479933, 0.0208004, 0, 0.485537, 0 )
 visible = false
 material = SubResource( 5 )
 
