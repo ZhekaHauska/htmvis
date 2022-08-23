@@ -83,7 +83,6 @@ func _on_Area_input_event(camera, event, position, normal, shape_idx):
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			emit_signal("selected", cell)
 			set_selected(true)
-			print('cell_info')
 
 
 func _on_CellInfo_hide():

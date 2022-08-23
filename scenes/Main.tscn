@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/GUI.gd" type="Script" id=1]
 [ext_resource path="res://scripts/Main.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Layer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/PivotCam.gd" type="Script" id=4]
+[ext_resource path="res://scripts/Settings.gd" type="Script" id=5]
 
 [sub_resource type="Environment" id=1]
 ambient_light_color = Color( 0.290196, 0.290196, 0.290196, 1 )
@@ -13,7 +14,6 @@ glow_bloom = 0.48
 
 [node name="Main" type="Node"]
 script = ExtResource( 2 )
-data_path = "/home/gsys/Desktop/Activity/HTM/htm_rl_tepo/hima_airi/him-agent/hima/experiments/htm/logs/tm_state"
 
 [node name="Layer" parent="." instance=ExtResource( 3 )]
 
@@ -74,6 +74,7 @@ margin_top = -64.0001
 margin_right = 384.0
 margin_bottom = 64.0001
 window_title = "Set data path"
+script = ExtResource( 5 )
 
 [node name="PathContainer" type="HBoxContainer" parent="GUI/Settings"]
 anchor_left = 0.5
@@ -131,5 +132,6 @@ environment = SubResource( 1 )
 [connection signal="item_selected" from="GUI/CellInfo/VBoxContainer/Segments/Apical" to="Layer" method="_on_Apical_item_selected"]
 [connection signal="nothing_selected" from="GUI/CellInfo/VBoxContainer/Segments/Apical" to="Layer" method="_on_Apical_nothing_selected"]
 [connection signal="confirmed" from="GUI/Settings" to="." method="_on_Settings_confirmed"]
+[connection signal="confirmed" from="GUI/Settings" to="GUI/Settings" method="_on_Settings_confirmed"]
 [connection signal="pressed" from="GUI/Settings/PathContainer/Browse" to="." method="_on_Browse_pressed"]
-[connection signal="dir_selected" from="GUI/FileDialog" to="." method="_on_FileDialog_dir_selected"]
+[connection signal="dir_selected" from="GUI/FileDialog" to="GUI/Settings" method="_on_FileDialog_dir_selected"]

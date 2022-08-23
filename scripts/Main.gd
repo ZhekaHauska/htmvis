@@ -10,7 +10,6 @@ var step = 0
 
 
 func _ready():
-	$GUI/Settings/PathContainer/DataPath.text = data_path
 	$GUI/Settings.popup()
 
 
@@ -101,6 +100,8 @@ func load_json_data(path):
 
 
 func _on_Settings_confirmed():
+	data_path = $GUI/Settings/PathContainer/DataPath.text
+	
 	chunk = 0
 	chunk_step = 0
 	step = 0
@@ -136,7 +137,3 @@ func _on_Settings_confirmed():
 
 func _on_Browse_pressed():
 	$GUI/FileDialog.popup()
-
-
-func _on_FileDialog_dir_selected(dir):
-	data_path = dir
