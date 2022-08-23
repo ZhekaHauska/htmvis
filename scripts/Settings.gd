@@ -11,11 +11,11 @@ func _ready():
 		return
 
 	var path = config.get_value("Main", "data_path")
-	$PathContainer/DataPath.text = path
+	$VBoxContainer/PathContainer/DataPath.text = path
 	
 
 func _on_Settings_confirmed():
-	var path = $PathContainer/DataPath.text
+	var path = $VBoxContainer/PathContainer/DataPath.text
 	config.set_value("Main", "data_path", path)
 	config.save("user://settings.cfg")
 

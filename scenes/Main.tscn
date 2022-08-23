@@ -65,6 +65,7 @@ margin_bottom = -4.0
 allow_reselect = true
 
 [node name="Settings" type="AcceptDialog" parent="GUI"]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -73,30 +74,42 @@ margin_left = -384.0
 margin_top = -64.0001
 margin_right = 384.0
 margin_bottom = 64.0001
+size_flags_horizontal = 0
+size_flags_vertical = 0
 window_title = "Set data path"
 script = ExtResource( 5 )
 
-[node name="PathContainer" type="HBoxContainer" parent="GUI/Settings"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -376.0
-margin_top = -56.0001
-margin_right = 376.0
-margin_bottom = 28.0001
-size_flags_horizontal = 0
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Settings"]
+anchor_right = 0.999
+anchor_bottom = 0.703
+margin_left = 10.0
+margin_right = -10.0
+margin_bottom = 0.0158691
+
+[node name="Label" type="Label" parent="GUI/Settings/VBoxContainer"]
+margin_right = 747.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Select or input data path"
+valign = 1
+
+[node name="PathContainer" type="HBoxContainer" parent="GUI/Settings/VBoxContainer"]
+margin_top = 66.0
+margin_right = 747.0
+margin_bottom = 90.0
+size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="Browse" type="Button" parent="GUI/Settings/PathContainer"]
+[node name="Browse" type="Button" parent="GUI/Settings/VBoxContainer/PathContainer"]
 margin_right = 59.0
-margin_bottom = 40.0
+margin_bottom = 24.0
 text = "Browse"
 
-[node name="DataPath" type="LineEdit" parent="GUI/Settings/PathContainer"]
+[node name="DataPath" type="LineEdit" parent="GUI/Settings/VBoxContainer/PathContainer"]
 margin_left = 63.0
-margin_right = 715.0
-margin_bottom = 40.0
+margin_right = 747.0
+margin_bottom = 24.0
 size_flags_horizontal = 3
 
 [node name="FileDialog" type="FileDialog" parent="GUI"]
@@ -133,5 +146,5 @@ environment = SubResource( 1 )
 [connection signal="nothing_selected" from="GUI/CellInfo/VBoxContainer/Segments/Apical" to="Layer" method="_on_Apical_nothing_selected"]
 [connection signal="confirmed" from="GUI/Settings" to="." method="_on_Settings_confirmed"]
 [connection signal="confirmed" from="GUI/Settings" to="GUI/Settings" method="_on_Settings_confirmed"]
-[connection signal="pressed" from="GUI/Settings/PathContainer/Browse" to="." method="_on_Browse_pressed"]
+[connection signal="pressed" from="GUI/Settings/VBoxContainer/PathContainer/Browse" to="." method="_on_Browse_pressed"]
 [connection signal="dir_selected" from="GUI/FileDialog" to="GUI/Settings" method="_on_FileDialog_dir_selected"]

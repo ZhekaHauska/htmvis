@@ -100,7 +100,7 @@ func load_json_data(path):
 
 
 func _on_Settings_confirmed():
-	data_path = $GUI/Settings/PathContainer/DataPath.text
+	data_path = $GUI/Settings/VBoxContainer/PathContainer/DataPath.text
 	
 	chunk = 0
 	chunk_step = 0
