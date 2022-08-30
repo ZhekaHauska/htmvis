@@ -50,6 +50,15 @@ func next_step(inc):
 		chunk_step = len(data['cells']) - 1
 		
 	$Layer.update(data['cells'][chunk_step])
+	$GUI/GeneralInfo.text = \
+	"""
+	Step: %s  Forward: %s  Context: %s  Feedback: %s 
+	""" % [
+		step, 
+		data['symbols']['forward'][chunk_step],
+		data['symbols']['context'][chunk_step],
+		data['symbols']['feedback'][chunk_step],
+	]
 
 	
 func find_data_chunks():

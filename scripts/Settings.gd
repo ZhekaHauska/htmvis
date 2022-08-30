@@ -21,4 +21,4 @@ func _on_Settings_confirmed():
 
 
 func _on_FileDialog_dir_selected(dir):
-	$PathContainer/DataPath.text = dir
+	$VBoxContainer/PathContainer/DataPath.text = dir
