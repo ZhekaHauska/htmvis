@@ -35,7 +35,8 @@ func next_step(inc):
 		
 		if chunk >= len(chunks):
 			chunk = 0
-			data = load_json_data(chunks[chunk])
+		
+		data = load_json_data(chunks[chunk])
 		
 		chunk_step = 0
 		
@@ -45,7 +46,8 @@ func next_step(inc):
 		
 		if chunk < 0:
 			chunk = len(chunks) - 1
-			data = load_json_data(chunks[chunk])
+		
+		data = load_json_data(chunks[chunk])
 			
 		chunk_step = len(data['cells']) - 1
 		
